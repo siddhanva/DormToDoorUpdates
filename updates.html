@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DormToDoor Updates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* Your original styles unchanged */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid #e0e0e0;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      backdrop-filter: saturate(180%) blur(8px);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #111;
+    }
+
+    .logo i {
+      stroke-width: 2.5;
+      color: #0077ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #666;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #0077ff;
+      border-color: #0077ff;
+    }
+
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
+      background: #f9fbff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.1);
+      margin-bottom: 48px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #111;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .main-content {
+      padding-bottom: 64px;
+    }
+
+    .add-update-section,
+    .update-item {
+      background: #fff;
+      border: 1px solid #e3e7ef;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .add-update-section:hover,
+    .update-item:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-update-section h2,
+    .updates-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      color: #111;
+    }
+
+    .update-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 14px 18px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      background: #fff;
+      box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 400;
+      resize: vertical;
+      min-height: 44px;
+    }
+
+    .form-textarea {
+      min-height: 140px;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #0077ff;
+      box-shadow: 0 0 8px rgba(0, 119, 255, 0.4);
+      background: #fefeff;
+    }
+
+    .btn {
+      padding: 14px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      background: #0077ff;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      align-self: flex-start;
+      box-shadow: 0 4px 12px rgba(0, 119, 255, 0.5);
+    }
+
+    .btn:hover {
+      background: #005fcc;
+      box-shadow: 0 6px 20px rgba(0, 95, 204, 0.6);
+    }
+
+    .update-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .update-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .update-date {
+      background: #e6f0ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #0077ff;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .update-content {
+      color: #444;
+      margin-top: 16px;
+      white-space: pre-wrap;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 50px 20px;
+      color: #999;
+      border: 1px dashed #ddd;
+      border-radius: 12px;
+      font-size: 1.25rem;
+      font-weight: 600;
+      background: #fafafa;
+    }
+
+    .comments-section {
+      border-top: 1px solid #e3e7ef;
+      margin-top: 32px;
+      padding-top: 28px;
+    }
+
+    .comments-header {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 22px;
+      color: #0077ff;
+    }
+
+    .comments-header i {
+      margin-right: 8px;
+      stroke-width: 2.5;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #f4f9ff;
+      padding: 20px 24px;
+      border-radius: 12px;
+      box-shadow: inset 0 2px 6px rgb(0 119 255 / 0.1);
+      margin-bottom: 28px;
+    }
+
+    .comment-name-input,
+    .comment-input {
+      padding: 14px 18px;
+      border: 1.5px solid #ccc;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      background: #fff;
+      box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.04);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 500;
+    }
+
+    .comment-name-input:focus,
+    .comment-input:focus {
+      outline: none;
+      border-color: #0077ff;
+      box-shadow: 0 0 8px rgba(0, 119, 255, 0.4);
+      background: #fefeff;
+    }
+
+    .comment-input {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .btn-comment {
+      background: #005fcc;
+      color: white;
+      padding: 14px 20px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.3s ease;
+    }
+
+    .btn-comment:hover {
+      background: #003f8a;
+    }
+
+    .comment-list {
+      max-height: 320px;
+      overflow-y: auto;
+      margin-top: 12px;
+    }
+
+    .comment-item {
+      background: #e6f0ff;
+      padding: 14px 20px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 5px rgb(0 119 255 / 0.15);
+      font-size: 1rem;
+      color: #0747a6;
+      word-wrap: break-word;
+    }
+
+    .comment-author {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #004a99;
+    }
+
+    @media (max-width: 600px) {
+      .update-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <i data-feather="package"></i>
+        DormToDoor Updates
+      </div>
+      <nav class="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="#" class="active">Updates</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to DormToDoor Updates</h1>
+      <p>Your latest Updates and Communications on DormToDoor's Web and Mobile Applications!</p>
+    </div>
+  </section>
+
+  <main class="container main-content" role="main" aria-live="polite">
+    <section class="add-update-section" aria-labelledby="add-update-title">
+      <h2 id="add-update-title">Post a New Update</h2>
+      <form id="updateForm" class="update-form" aria-describedby="form-instructions">
+        <p id="form-instructions" style="margin-bottom:1rem; font-size:0.9rem; color:#666;">
+          Share your update to keep everyone in the loop.
+        </p>
+        <div class="form-group">
+          <label for="updateTitle">Update Title</label>
+          <input id="updateTitle" name="updateTitle" type="text" class="form-input" required placeholder="Enter a clear title" aria-required="true" />
+        </div>
+        <div class="form-group">
+          <label for="updateContent">Update Content</label>
+          <textarea id="updateContent" name="updateContent" class="form-textarea" required placeholder="Write the details of your update here" aria-required="true"></textarea>
+        </div>
+        <button type="submit" class="btn" aria-label="Post new update">Post Update</button>
+      </form>
+    </section>
+
+    <section class="updates-section" aria-labelledby="updates-title">
+      <h2 id="updates-title">Latest Updates</h2>
+      <div id="updatesContainer" role="list" aria-live="polite" aria-relevant="additions">
+        <!-- Updates will be dynamically inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Add these Firebase SDKs before your script if not already present -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script>
+  // Initialize Firebase FIRST
+  const firebaseConfig = {
+    apiKey: "AIzaSyAU6hzw5f6s8IV2ucFJRT4YOXTVoJ50rDc",
+    authDomain: "dorm-to-door-updates.firebaseapp.com",
+    databaseURL: "https://dorm-to-door-updates-default-rtdb.firebaseio.com",
+    projectId: "dorm-to-door-updates",
+    storageBucket: "dorm-to-door-updates.appspot.com",
+    messagingSenderId: "1083111434988",
+    appId: "1:1083111434988:web:91689af47c016c157413c9",
+    measurementId: "G-QFYMZDY03Y"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      });
+    }
+
+    function renderUpdates(updates) {
+      const container = document.getElementById('updatesContainer');
+      container.innerHTML = '';
+
+      if (!updates || Object.keys(updates).length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'empty-state';
+        empty.textContent = 'No updates yet. Post the first update to get started!';
+        container.appendChild(empty);
+        return;
+      }
+
+      // Sort updates by date descending
+      const updatesArr = Object.entries(updates).sort((a, b) => new Date(b[1].date) - new Date(a[1].date));
+
+      updatesArr.forEach(([updateId, update]) => {
+        const updateEl = document.createElement('article');
+        updateEl.className = 'update-item';
+        updateEl.setAttribute('role', 'listitem');
+        updateEl.setAttribute('aria-label', `Update titled ${update.title}, posted on ${formatDate(update.date)}`);
+
+        // Header
+        const header = document.createElement('div');
+        header.className = 'update-header';
+
+        const title = document.createElement('h3');
+        title.className = 'update-title';
+        title.textContent = update.title;
+
+        const date = document.createElement('time');
+        date.className = 'update-date';
+        date.setAttribute('datetime', update.date);
+        date.textContent = formatDate(update.date);
+
+        header.appendChild(title);
+        header.appendChild(date);
+
+        // Content
+        const content = document.createElement('p');
+        content.className = 'update-content';
+        content.textContent = update.content;
+
+        updateEl.appendChild(header);
+        updateEl.appendChild(content);
+
+        // Comments Section
+        const commentsSection = document.createElement('section');
+        commentsSection.className = 'comments-section';
+        commentsSection.setAttribute('aria-label', `Comments for update titled ${update.title}`);
+
+        const commentsHeader = document.createElement('div');
+        commentsHeader.className = 'comments-header';
+        commentsHeader.innerHTML = `<i data-feather="message-circle"></i> Comments`;
+
+        commentsSection.appendChild(commentsHeader);
+
+        // Comment list container
+        const commentList = document.createElement('div');
+        commentList.className = 'comment-list';
+        commentsSection.appendChild(commentList);
+
+        // Render comments from Firebase
+        db.ref(`comments/${updateId}`).on('value', snapshot => {
+          commentList.innerHTML = '';
+          const comments = snapshot.val();
+          if (!comments) {
+            const noComments = document.createElement('p');
+            noComments.style.color = '#666';
+            noComments.style.fontStyle = 'italic';
+            noComments.textContent = 'No comments yet. Be the first to comment!';
+            commentList.appendChild(noComments);
+          } else {
+            Object.values(comments).forEach(comment => {
+              const div = document.createElement('div');
+              div.className = 'comment-item';
+              const author = document.createElement('div');
+              author.className = 'comment-author';
+              author.textContent = comment.name;
+              const content = document.createElement('div');
+              content.className = 'comment-content';
+              content.textContent = comment.text;
+              div.appendChild(author);
+              div.appendChild(content);
+              commentList.appendChild(div);
+            });
+          }
+        });
+
+        // Comment form
+        const commentForm = document.createElement('form');
+        commentForm.className = 'comment-form';
+        commentForm.setAttribute('aria-label', `Add comment form for update titled ${update.title}`);
+        commentForm.innerHTML = `
+          <input type="text" class="comment-name-input" placeholder="Your Name" required aria-required="true" aria-label="Your Name"/>
+          <textarea class="comment-input" placeholder="Write your comment here" required aria-required="true" aria-label="Comment text"></textarea>
+          <button type="submit" class="btn-comment">Post Comment</button>
+        `;
+
+        commentForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameInput = commentForm.querySelector('.comment-name-input');
+          const textInput = commentForm.querySelector('.comment-input');
+          const name = nameInput.value.trim();
+          const text = textInput.value.trim();
+          if (!name || !text) return;
+          db.ref(`comments/${updateId}`).push({
+            name,
+            text,
+            date: new Date().toISOString()
+          });
+          nameInput.value = '';
+          textInput.value = '';
+        });
+
+        commentsSection.appendChild(commentForm);
+        updateEl.appendChild(commentsSection);
+
+        container.appendChild(updateEl);
+      });
+
+      feather.replace();
+    }
+
+    // Listen for updates in real time
+    db.ref('updates').on('value', snapshot => {
+      renderUpdates(snapshot.val());
+    });
+
+    // Handle new update form submission
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace();
+      const updateForm = document.getElementById('updateForm');
+      updateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const titleInput = updateForm.updateTitle;
+        const contentInput = updateForm.updateContent;
+        const title = titleInput.value.trim();
+        const content = contentInput.value.trim();
+        if (!title || !content) return;
+        db.ref('updates').push({
+          title,
+          content,
+          date: new Date().toISOString()
+        });
+        titleInput.value = '';
+        contentInput.value = '';
+      });
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - DormToDoor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #1f2937;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid #f3f4f6;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #1f2937;
+    }
+
+    .logo i {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2.5;
+      color: #3b82f6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: #6b7280;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 0;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+
+    .nav-links a.active {
+      color: #3b82f6;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #1f2937;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .main-content {
+      padding: 80px 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 80px;
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1f2937;
+    }
+
+    .contact-info p {
+      font-size: 1rem;
+      color: #6b7280;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      transition: all 0.2s ease;
+    }
+
+    .contact-method:hover {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+    }
+
+    .contact-method i {
+      width: 24px;
+      height: 24px;
+      color: #3b82f6;
+      stroke-width: 2;
+    }
+
+    .contact-method-content h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #1f2937;
+    }
+
+    .contact-method-content p {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    .contact-method-content a {
+      color: #3b82f6;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-method-content a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-form h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1f2937;
+    }
+
+    .contact-form .subtitle {
+      color: #6b7280;
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      font-family: inherit;
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4);
+    }
+
+    .submit-btn i {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+    }
+
+    .faq-section {
+      background: #f8fafc;
+      padding: 80px 0;
+    }
+
+    .faq-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      color: #1f2937;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    }
+
+    .faq-item h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    .faq-item p {
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .success-message {
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success-message i {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .contact-info h2,
+      .contact-form h2,
+      .faq-section h2 {
+        font-size: 1.75rem;
+      }
+
+      .contact-form {
+        padding: 32px 24px;
+      }
+
+      .nav-links {
+        gap: 20px;
+      }
+
+      .nav-links a {
+        font-size: 0.875rem;
+      }
+
+      .main-content,
+      .faq-section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .contact-form {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-content">
+      <div class="logo">
+        <i data-feather="package"></i>
+        DormToDoor
+      </div>
+      <nav class="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="updates.html">Updates</a>
+        <a href="#" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Get In Touch</h1>
+      <p>Have questions, feedback, or need support? We're here to help you 24/7. Reach out to us anytime.</p>
+    </div>
+  </section>
+
+  <main class="container main-content">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>We're always happy to hear from our users. Whether you have questions about our service, need technical support, or want to share feedback, don't hesitate to reach out.</p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <i data-feather="phone"></i>
+            <div class="contact-method-content">
+              <h3>Phone Support</h3>
+              <p><a href="tel:+1-800-DORMTODOOR">+1 (800) DORM-TO-DOOR</a></p>
+              <p>Available 24/7 for urgent matters</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <i data-feather="mail"></i>
+            <div class="contact-method-content">
+              <h3>Email Support</h3>
+              <p><a href="mailto:support@dormtodoor.com">support@dormtodoor.com</a></p>
+              <p>Response within 2 hours</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <i data-feather="message-circle"></i>
+            <div class="contact-method-content">
+              <h3>Live Chat</h3>
+              <p>Available in our mobile app</p>
+              <p>Instant support during business hours</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <i data-feather="map-pin"></i>
+            <div class="contact-method-content">
+              <h3>Office Location</h3>
+              <p>123 University Avenue<br>College Town, CT 06511</p>
+              <p>Monday - Friday: 9AM - 6PM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h2>Send us a Message</h2>
+        <p class="subtitle">Fill out the form below and we'll get back to you as soon as possible.</p>
+        
+        <div class="success-message" id="successMessage">
+          <i data-feather="check-circle"></i>
+          <span>Thank you for your message! We'll get back to you within 24 hours.</span>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label for="university">University</label>
+            <input type="text" id="university" name="university" class="form-input" placeholder="e.g., Yale University">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject" class="form-select" required>
+              <option value="">Select a topic</option>
+              <option value="general">General Inquiry</option>
+              <option value="support">Technical Support</option>
+              <option value="billing">Billing Question</option>
+              <option value="partnership">Partnership Opportunity</option>
+              <option value="feedback">Feedback & Suggestions</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="form-textarea" placeholder="Tell us how we can help you..." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i data-feather="send"></i>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <section class="faq-section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>What are your delivery hours?</h3>
+          <p>We operate 24/7 on most campuses, with extended hours during exam periods. Check our app for specific hours at your university.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>How much does delivery cost?</h3>
+          <p>Delivery fees start at $2.99 for most orders. Students with our premium membership enjoy free delivery on orders over $15.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>What if my order is late or incorrect?</h3>
+          <p>Contact us immediately through the app or call our support line. We'll make it right with a refund or replacement order.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Do you deliver to all dorms?</h3>
+          <p>We deliver to all residence halls and approved housing on participating campuses. Check our coverage map in the app.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>How do I track my order?</h3>
+          <p>Real-time tracking is available in our app. You'll receive notifications when your order is confirmed, prepared, and delivered.</p>
+        </div>
+        
+        <div class="faq-item">
+          <h3>Can I schedule deliveries in advance?</h3>
+          <p>Yes! You can schedule deliveries up to 3 days in advance. Perfect for planning study sessions or events.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace();
+      
+      const contactForm = document.getElementById('contactForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Simulate form submission
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+        
+        // In a real application, you would send this data to your server
+        console.log('Form submitted:', data);
+        
+        // Show success message
+        successMessage.style.display = 'flex';
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.style.display = 'none';
+        }, 5000);
+        
+        // Scroll to top to show success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
